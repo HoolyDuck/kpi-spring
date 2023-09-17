@@ -17,9 +17,9 @@ public class HelloController {
         return "main";
     }
 
-    @GetMapping("/maxim")
-    public String getMaximPage() {
-        return "lads/maxim";
+    @GetMapping("/maksym")
+    public String getMaksymPage() {
+        return "lads/maksym";
     }
 
     @GetMapping("/nazariy")
