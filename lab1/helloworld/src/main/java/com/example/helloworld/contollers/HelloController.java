@@ -11,4 +11,24 @@ public class HelloController {
     public String helloWorld() {
         return "Hello, World!";
     }
+
+    @GetMapping("main")
+    public String getMainPage(){
+        return "main";
+    }
+
+    @GetMapping("maxim")
+    public String getMaximPage(){
+        return "maxim";
+    }
+
+    @GetMapping("nazariy")
+    public String getNazariyPage(){
+        return "nazariy";
+    }
+    @GetMapping("danylo")
+    public String getDanyloPage(){
+        return "danylo";
+    }
+
 }
