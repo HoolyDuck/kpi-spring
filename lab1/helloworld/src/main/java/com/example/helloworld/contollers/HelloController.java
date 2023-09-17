@@ -12,23 +12,24 @@ public class HelloController {
         return "Hello, World!";
     }
 
-    @GetMapping("main")
-    public String getMainPage(){
+    @GetMapping("/main")
+    public String getMainPage() {
         return "main";
     }
 
-    @GetMapping("maxim")
-    public String getMaximPage(){
-        return "maxim";
+    @GetMapping("/maxim")
+    public String getMaximPage() {
+        return "lads/maxim";
     }
 
-    @GetMapping("nazariy")
-    public String getNazariyPage(){
-        return "nazariy";
+    @GetMapping("/nazariy")
+    public String getNazariyPage() {
+        return "lads/nazariy";
     }
-    @GetMapping("danylo")
-    public String getDanyloPage(){
-        return "danylo";
+
+    @GetMapping("/danylo")
+    public String getDanyloPage() {
+        return "lads/danylo";
     }
 
 }
