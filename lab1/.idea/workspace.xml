@@ -4,20 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d46970da-65a2-4662-9d8f-4e1f33958c76" name="Changes" comment="">
+    <list default="true" id="c1591e4e-9123-467f-a485-3384629a57d6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/danylo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/maksym.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/nazariy.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/danylo.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/danylo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/maksym.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/maksym.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/nazariy.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/nazariy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2VWU5P2Yt6nBTe7JLk1n8B6ZPaJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -34,15 +54,23 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/Github/kpi-spring",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\Coding\spring\kpi-spring\lab1\helloworld\src\main\resources" />
+      <recent name="H:\Coding\spring\kpi-spring\lab1\helloworld\src\main\static\assets" />
+      <recent name="H:\Coding\spring\kpi-spring\lab1\helloworld\src\main\static\styles" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Lab1Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="lab1" />
@@ -55,13 +83,14 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d46970da-65a2-4662-9d8f-4e1f33958c76" name="Changes" comment="" />
+      <changelist id="c1591e4e-9123-467f-a485-3384629a57d6" name="Changes" comment="" />
       <created>1694951147125</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1694951147125</updated>
       <workItem from="1694951149830" duration="498000" />
       <workItem from="1694953977699" duration="1192000" />
+      <workItem from="1695240834684" duration="1648000" />
     </task>
     <servers />
   </component>
@@ -71,6 +100,17 @@
   <component name="UnknownFeatures">
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
