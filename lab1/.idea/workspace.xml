@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1591e4e-9123-467f-a485-3384629a57d6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/danylo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/maksym.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/assets/nazariy.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helloworld/src/main/resources/static/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c1591e4e-9123-467f-a485-3384629a57d6" name="Changes" comment="styles added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/danylo.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/danylo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/maksym.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/maksym.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/nazariy.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/lads/nazariy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helloworld/src/main/resources/templates/main.html" beforeDir="false" afterPath="$PROJECT_DIR$/helloworld/src/main/resources/templates/main.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +80,44 @@
       <updated>1694951147125</updated>
       <workItem from="1694951149830" duration="498000" />
       <workItem from="1694953977699" duration="1192000" />
-      <workItem from="1695240834684" duration="1648000" />
+      <workItem from="1695240834684" duration="2282000" />
     </task>
+    <task id="LOCAL-00001" summary="added gitignore for .idea">
+      <created>1695242854466</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242854466</updated>
+    </task>
+    <task id="LOCAL-00002" summary="some ide bullshit">
+      <created>1695242898251</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242898251</updated>
+    </task>
+    <task id="LOCAL-00003" summary="images added">
+      <created>1695242918921</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242918921</updated>
+    </task>
+    <task id="LOCAL-00004" summary="main page done">
+      <created>1695242942745</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242942745</updated>
+    </task>
+    <task id="LOCAL-00005" summary="styles added">
+      <created>1695242949488</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695242949488</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,6 +140,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added gitignore for .idea" />
+    <MESSAGE value="some ide bullshit" />
+    <MESSAGE value="images added" />
+    <MESSAGE value="main page done" />
+    <MESSAGE value="styles added" />
+    <option name="LAST_COMMIT_MESSAGE" value="styles added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
