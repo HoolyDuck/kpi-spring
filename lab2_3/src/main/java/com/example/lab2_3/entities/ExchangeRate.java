@@ -6,7 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "date")
+@Table(name = "rates")
 @Setter
 @Getter
 @AllArgsConstructor
@@ -24,6 +24,6 @@ public class ExchangeRate {
     @ManyToOne(optional = false)
     @JoinColumn(name = "targetCurrency_id", referencedColumnName = "id", nullable = false)
     private Currency targetCurrency;
-    @Column(precision=10, scale=2)
+    @Column(precision=10)
     private double rate;
 }
