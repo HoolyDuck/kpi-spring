@@ -36,7 +36,7 @@ public class InsertDataRunner implements CommandLineRunner {
         // pairs
         for (Currency source : currencyService.getAll()) {
             for (Currency target : currencyService.getAll()) {
-                if (!source.equals(target)) {
+                if (!source.getName().equals(target.getName())) {
                     Map<String, String> map = new HashMap<>(Map.of("A", "1"));
                     map.put("C1", source.getName());
                     map.put("C2", target.getName());
