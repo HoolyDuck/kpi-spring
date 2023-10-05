@@ -13,6 +13,8 @@ public interface ExchangeService {
 
     List<CurrencyDTO> getAllCurrenciesByDate(Date dateFrom, Date dateTo, String currency1, String currency2);
 
+    List<CurrencyDTO> getAllTodayCurrencies();
+
     CurrencyDTO getTodayCurrency(String currency1, String currency2);
 
     void deleteAllRates();
