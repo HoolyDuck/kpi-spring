@@ -7,10 +7,6 @@ import java.util.List;
 public interface CurrencyService {
     List<Currency> getAll();
 
-    Currency getById();
-
-    Currency getByName(String name);
-
     Currency create(Currency currency);
 
     void delete(Long id);
