@@ -35,12 +35,12 @@ public class ExchangeServiceBean implements ExchangeService {
 
     @Override
     public List<CurrencyDTO> getAllTodayCurrencies() {
-        return pGetTodayCurrencies().stream().map(CurrencyMapper::toDto).toList();
+        return GetTodayCurrencies().stream().map(CurrencyMapper::toDto).toList();
     }
 
     @Override
     public CurrencyDTO getTodayCurrency(String currency1, String currency2) {
-        return pGetTodayCurrencies().stream().filter(exchangeRate -> {
+        return GetTodayCurrencies().stream().filter(exchangeRate -> {
                     if (exchangeRate.getSourceCurrency().getName().equals(currency1)
                             && exchangeRate.getTargetCurrency().getName().equals(currency2)) {
                         return true;
@@ -51,7 +51,7 @@ public class ExchangeServiceBean implements ExchangeService {
                 findFirst().map(CurrencyMapper::toDto).get();
     }
 
-    private List<ExchangeRate> pGetTodayCurrencies() {
+    private List<ExchangeRate> GetTodayCurrencies() {
         return exchangeRepo.findAll().stream().filter(exchangeRate -> {
             Date today = new Date();
             if (exchangeRate.getDate().getDate() == today.getDate()
