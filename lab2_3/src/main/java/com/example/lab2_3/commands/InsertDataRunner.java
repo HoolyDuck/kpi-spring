@@ -1,5 +1,10 @@
 package com.example.lab2_3.commands;
 
+import com.example.lab2_3.entities.Currency;
+import com.example.lab2_3.entities.ExchangeRate;
+import com.example.lab2_3.services.CurrencyService;
+import com.example.lab2_3.services.ExchangeService;
+import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -8,6 +13,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,37 +23,45 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Component
+@RequiredArgsConstructor
 public class InsertDataRunner implements CommandLineRunner {
-    private static final Map<String, String> currencyPairs = Map.of(
-            "USD", "UAH",
-            "EUR", "UAH",
-            "GBP", "UAH"
-    );
+    private final CurrencyService currencyService;
+
+    private final ExchangeService exchangeService;
 
     @Override
     public void run(String... args) throws Exception {
-        //clear database
         // List<Entity> create list of data, in order to insert it then in the database
-        Map<String, String> map = new HashMap<>(Map.of("A", "1"));
-        for (String pairKey : currencyPairs.keySet()) {
-            map.put("C1", pairKey);
-            map.put("C2", currencyPairs.get(pairKey));
-            LocalDateTime dt = LocalDateTime.of(LocalDate.now(), LocalTime.now());  // Start date
-            dt = dt.minusDays(30);
-            for (int i = 0; i < 31; i++) {
-                putDateInMap(dt, map);
-                dt = dt.plusDays(1);
-                parse(map);
-                //create entity
-                //fill it in the list
+        List<ExchangeRate> rates = new ArrayList<>();
+        // pairs
+        for (Currency source : currencyService.getAll()) {
+            for (Currency target : currencyService.getAll()) {
+                if (!source.equals(target)) {
+                    Map<String, String> map = new HashMap<>(Map.of("A", "1"));
+                    map.put("C1", source.getName());
+                    map.put("C2", target.getName());
+                    LocalDateTime dt = LocalDateTime.of(LocalDate.now(), LocalTime.now());  // Start date
+                    dt = dt.minusDays(30);
+                    for (int i = 0; i < 31; i++) {
+                        putDateInMap(dt, map);
+                        dt = dt.plusDays(1);
+                        //create entity
+                        ExchangeRate exchangeRate = ExchangeRate.builder()
+                                .sourceCurrency(source)
+                                .targetCurrency(target)
+                                .date(Date.valueOf(dt.toLocalDate()))
+                                .rate(Double.parseDouble(parse(map)))
+                                .build();
+                        //fill it in the list
+                        rates.add(exchangeRate);
+                }
             }
-            //insert all the data into database
         }
-    }
-
-    //method which insert list of entities into DB
-    private void insertData(){
-        //logic
+        //clear data
+        exchangeService.deleteAllRates();
+        }
+        //insert all the data into database
+        exchangeService.createExchangeRates(rates);
     }
 
     private void putDateInMap(LocalDateTime dt, Map<String, String> map) {
