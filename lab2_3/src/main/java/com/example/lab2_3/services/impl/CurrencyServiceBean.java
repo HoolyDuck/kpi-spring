@@ -39,19 +39,24 @@ public class CurrencyServiceBean implements CurrencyService {
     }
 
     @Override
+    public List<Currency> createList(List<Currency> currencyList) {
+        return (List<Currency>) currencyRepo.saveAll(currencyList);
+    }
+
+    @Override
     public void delete(Long id) {
         currencyRepo.deleteById(id);
     }
 
     @Override
     public void update(Long id, Currency currency) {
-        currencyRepo.findById(id).map(toUpdate ->{
-                    toUpdate.setName(currency.getName());
-                    return currencyRepo.save(toUpdate);
-                });
+        currencyRepo.findById(id).map(toUpdate -> {
+            toUpdate.setName(currency.getName());
+            return currencyRepo.save(toUpdate);
+        });
     }
 
-    private void refreshData(){
+    private void refreshData() {
         // List<Entity> create list of data, in order to insert it then in the database
         List<ExchangeRate> rates = new ArrayList<>();
         // pairs

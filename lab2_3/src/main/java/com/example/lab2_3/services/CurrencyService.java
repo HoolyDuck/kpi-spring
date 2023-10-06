@@ -9,6 +9,8 @@ public interface CurrencyService {
 
     Currency create(Currency currency);
 
+    List<Currency> createList(List<Currency> currencyList);
+
     void delete(Long id);
 
     void update(Long id, Currency currency);

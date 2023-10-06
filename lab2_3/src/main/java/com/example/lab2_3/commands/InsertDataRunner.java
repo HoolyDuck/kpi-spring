@@ -31,6 +31,14 @@ public class InsertDataRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        //insert currencies
+        if (currencyService.getAll().isEmpty()) {
+            currencyService.createList(List.of(Currency.builder().name("USD").build(),
+                    Currency.builder().name("UAH").build(),
+                    Currency.builder().name("EUR").build(),
+                    Currency.builder().name("GBP").build()
+            ));
+        }
         // List<Entity> create list of data, in order to insert it then in the database
         List<ExchangeRate> rates = new ArrayList<>();
         // pairs
@@ -54,11 +62,11 @@ public class InsertDataRunner implements CommandLineRunner {
                                 .build();
                         //fill it in the list
                         rates.add(exchangeRate);
+                    }
                 }
             }
-        }
-        //clear data
-        exchangeService.deleteAllRates();
+            //clear data
+            exchangeService.deleteAllRates();
         }
         //insert all the data into database
         exchangeService.createExchangeRates(rates);
