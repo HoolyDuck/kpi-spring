@@ -16,8 +16,9 @@ public class ExchangeRate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "date", nullable = false)
-    private Date date;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "date_id", referencedColumnName = "id", nullable = false)
+    private DateEntity date;
     @ManyToOne(optional = false)
     @JoinColumn(name = "sourceCurrency_id", referencedColumnName = "id", nullable = false)
     private Currency sourceCurrency;

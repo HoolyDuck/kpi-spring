@@ -1,8 +1,10 @@
 package com.example.lab2_3.commands;
 
 import com.example.lab2_3.entities.Currency;
+import com.example.lab2_3.entities.DateEntity;
 import com.example.lab2_3.entities.ExchangeRate;
 import com.example.lab2_3.services.CurrencyService;
+import com.example.lab2_3.services.DateService;
 import com.example.lab2_3.services.ExchangeService;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
@@ -29,8 +31,12 @@ public class InsertDataRunner implements CommandLineRunner {
 
     private final ExchangeService exchangeService;
 
+    private final DateService dateService;
+
     @Override
     public void run(String... args) throws Exception {
+        //clear dates
+        dateService.deleteAll();
         //insert currencies
         if (currencyService.getAll().isEmpty()) {
             currencyService.createList(List.of(Currency.builder().name("USD").build(),
@@ -41,6 +47,21 @@ public class InsertDataRunner implements CommandLineRunner {
         }
         // List<Entity> create list of data, in order to insert it then in the database
         List<ExchangeRate> rates = new ArrayList<>();
+        //insert dates
+        List<DateEntity> dateEntityList = new ArrayList<>();
+        LocalDateTime dt = LocalDateTime.of(LocalDate.now(), LocalTime.now());  // Start date
+        dt = dt.minusDays(30);
+        for (int i = 0; i < 30; i++) {
+            dt = dt.plusDays(1);
+            Date date = Date.valueOf(dt.toLocalDate());
+            DateEntity dateEntity = DateEntity.builder()
+                    .day(date.getDate())
+                    .month(date.getMonth() + 1)
+                    .year(date.getYear() + 1900)
+                    .build();
+            dateEntityList.add(dateEntity);
+        }
+        dateService.createList(dateEntityList);
         // pairs
         for (Currency source : currencyService.getAll()) {
             for (Currency target : currencyService.getAll()) {
@@ -48,16 +69,14 @@ public class InsertDataRunner implements CommandLineRunner {
                     Map<String, String> map = new HashMap<>(Map.of("A", "1"));
                     map.put("C1", source.getName());
                     map.put("C2", target.getName());
-                    LocalDateTime dt = LocalDateTime.of(LocalDate.now(), LocalTime.now());  // Start date
-                    dt = dt.minusDays(30);
-                    for (int i = 0; i < 31; i++) {
-                        putDateInMap(dt, map);
-                        dt = dt.plusDays(1);
+
+                    for (DateEntity date : dateService.getAll()) {
+                        putDateInMap(date, map);
                         //create entity
                         ExchangeRate exchangeRate = ExchangeRate.builder()
                                 .sourceCurrency(source)
                                 .targetCurrency(target)
-                                .date(Date.valueOf(dt.toLocalDate()))
+                                .date(date)
                                 .rate(Double.parseDouble(parse(map)))
                                 .build();
                         //fill it in the list
@@ -72,12 +91,12 @@ public class InsertDataRunner implements CommandLineRunner {
         exchangeService.createExchangeRates(rates);
     }
 
-    private void putDateInMap(LocalDateTime dt, Map<String, String> map) {
-        map.put("DD1", Integer.toString(dt.getDayOfMonth()));
-        map.put("MM1", Integer.toString(dt.getMonthValue()));
+    private void putDateInMap(DateEntity dt, Map<String, String> map) {
+        map.put("DD1", Integer.toString(dt.getDay()));
+        map.put("MM1", Integer.toString(dt.getMonth()));
         map.put("YYYY1", Integer.toString(dt.getYear()));
-        map.put("DD2", Integer.toString(dt.getDayOfMonth()));
-        map.put("MM2", Integer.toString(dt.getMonthValue()));
+        map.put("DD2", Integer.toString(dt.getDay()));
+        map.put("MM2", Integer.toString(dt.getMonth()));
         map.put("YYYY2", Integer.toString(dt.getYear()));
     }
 

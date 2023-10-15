@@ -1,5 +1,6 @@
 package com.example.lab2_3.controllers;
 import com.example.lab2_3.dtos.CurrencyDTO;
+import com.example.lab2_3.entities.DateEntity;
 import com.example.lab2_3.services.ExchangeService;
 import com.example.lab2_3.services.impl.ExchangeServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,15 +33,11 @@ public class ExchangesController {
     public String getAllExchanges(Model model,
                                   @PathVariable("source_curr") final String source_curr,
                                   @PathVariable("target_curr") final String target_curr,
-                                  @PathVariable("dateFrom") final Date dateFrom,
-                                  @PathVariable("dateTo") final Date dateTo
+                                  @PathVariable("dateFrom") final DateEntity dateFrom,
+                                  @PathVariable("dateTo") final DateEntity dateTo
                                   ){
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dateTo);
-        calendar.add(Calendar.DAY_OF_MONTH, 1);
-        Date includingDateTo = calendar.getTime();
 
-        List<CurrencyDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, includingDateTo, source_curr, target_curr);
+        List<CurrencyDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, dateTo, source_curr, target_curr);
         model.addAttribute("exchanges", exchanges);
         return "exchange_by_date";
     }
