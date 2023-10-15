@@ -8,6 +8,8 @@ import java.util.List;
 public interface DateService {
     List<DateEntity> getAll();
 
+    List<DateEntity> getDatesInRange(String dateFrom, String dateTo);
+
     DateEntity create(DateEntity dateEntity);
 
     List<DateEntity> createList(List<DateEntity> dateEntityList);

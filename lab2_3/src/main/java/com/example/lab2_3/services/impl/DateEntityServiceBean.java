@@ -6,6 +6,9 @@ import com.example.lab2_3.services.DateService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -46,5 +49,30 @@ public class DateEntityServiceBean implements DateService {
     @Override
     public void deleteAll() {
         dateEntityRepo.deleteAll();
+    }
+
+    @Override
+    public List<DateEntity> getDatesInRange(String dateFrom, String dateTo) {
+        // Format - YYYY-MM-DD
+        return dateEntityRepo.findAll().stream().filter(dateEntity -> {
+            String stringDateEntityDate = dateEntity.getYear().toString() + "-"
+                    + dateEntity.getMonth().toString() + "-"
+                    + dateEntity.getDay().toString();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                Date dateFromDate = format.parse(dateFrom);
+                Date dateToDate = format.parse(dateTo);
+                Date dateEntityDate = format.parse(stringDateEntityDate);
+                if (dateEntityDate.before(dateToDate)
+                        && dateEntityDate.after(dateFromDate)) {
+                    return true;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }).toList();
+
     }
 }
