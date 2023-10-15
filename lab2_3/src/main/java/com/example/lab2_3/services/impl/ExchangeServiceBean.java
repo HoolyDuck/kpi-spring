@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -24,21 +26,20 @@ public class ExchangeServiceBean implements ExchangeService {
     }
 
     @Override
-    public List<CurrencyDTO> getAllCurrenciesByDate(DateEntity dateFrom, DateEntity dateTo, String currency1, String currency2) {
+    public List<CurrencyDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1, String currency2) {
+        // Format - YYYY-MM-DD
         return exchangeRepo.findAll().stream().filter(exchangeRate -> {
-            String stringDateFrom = dateFrom.getYear().toString() + "-"
-                    + dateFrom.getMonth().toString() + "-"
-                    + dateFrom.getDay().toString();
-            String stringDateTo = dateTo.getYear().toString() + "-"
-                    + dateTo.getMonth().toString() + "-"
-                    + dateTo.getDay().toString();
+            if (!exchangeRate.getSourceCurrency().getName().equals(currency1)
+                    || !exchangeRate.getTargetCurrency().getName().equals(currency2)) {
+                return false;
+            }
             String stringExchangeRateDate = exchangeRate.getDate().getYear().toString() + "-"
                     + exchangeRate.getDate().getMonth().toString() + "-"
                     + exchangeRate.getDate().getDay().toString();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             try {
-                Date dateFromDate = format.parse(stringDateFrom);
-                Date dateToDate = format.parse(stringDateTo);
+                Date dateFromDate = format.parse(dateFrom);
+                Date dateToDate = format.parse(dateTo);
                 Date exchangeRateDate = format.parse(stringExchangeRateDate);
                 if (exchangeRateDate.before(dateToDate)
                         && exchangeRateDate.after(dateFromDate)) {
@@ -71,10 +72,10 @@ public class ExchangeServiceBean implements ExchangeService {
     }
 
     private List<ExchangeRate> GetTodayCurrencies() {
+        LocalDate localDate = LocalDate.now();
         return exchangeRepo.findAll().stream().filter(exchangeRate -> {
-            Date today = new Date();
-            if (exchangeRate.getDate().getDay() == today.getDate()
-                    && exchangeRate.getDate().getMonth() == today.getMonth()) {
+            if (exchangeRate.getDate().getDay() == localDate.getDayOfMonth()
+                    && exchangeRate.getDate().getMonth() == localDate.getMonthValue()) {
                 return true;
             }
             return false;

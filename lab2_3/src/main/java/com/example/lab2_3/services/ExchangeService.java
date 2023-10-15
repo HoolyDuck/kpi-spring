@@ -12,7 +12,7 @@ import java.util.List;
 public interface ExchangeService {
     List<ExchangeRate> createExchangeRates(List<ExchangeRate> rates);
 
-    List<CurrencyDTO> getAllCurrenciesByDate(DateEntity dateFrom, DateEntity dateTo, String currency1, String currency2);
+    List<CurrencyDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1, String currency2);
 
     List<CurrencyDTO> getAllTodayCurrencies();
 
