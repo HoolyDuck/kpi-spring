@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All exchanges for today</title>
+</head>
+<body>
+<h1>All exchanges for today</h1>
+<table>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Rate</th>
+    </tr>
+    <tr th:each="exchange : ${exchanges}">
+        <td th:text="${exchange.sourceCurrency}">From</td>
+        <td th:text="${exchange.targetCurrency}">To</td>
+        <td th:text="${exchange.rate}">Rate</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Exchanges by date</h1>
+<form th:action="@{/exchange/by-date(dateFrom=${dateFrom}, dateTo=${dateTo}, source_curr=${source_curr}, target_curr=${target_curr})}" method="get">
+    <--! Query params: date from, date to, currency from, currency to -->
+    <label for="date-from">Date from:</label>
+    <input type="date" id="date-from" name="dateFrom" value="2019-01-01">
+    <label for="date-to">Date to:</label>
+    <input type="date" id="date-to" name="dateTo" value="2019-01-01">
+
+    <label for="currency-from">Currency from:</label>
+    <select id="currency-from" name="source_curr">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="UAH">UAH</option>
+        <option value="GBR">GBR</option>
+    </select>
+
+    <label for="currency-to">Currency to:</label>
+    <select id="currency-to" name="target_curr">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="UAH">UAH</option>
+        <option value="GBR">GBR</option>
+    </select>
+
+    <input type="submit" value="Submit">
+</form>
+
+<table>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Rate</th>
+    </tr>
+    <tr th:each="exchange : ${exchanges}">
+        <td th:text="${exchange.sourceCurrency}">From</td>
+        <td th:text="${exchange.targetCurrency}">To</td>
+        <td th:text="${exchange.rate}">Rate</td>
+    </tr>
+</table>
+
+<p>
+    {exchanges}
+</p>
+
+</body>
+</html>
