@@ -1,6 +1,7 @@
 package com.example.lab2_3.controllers;
 
 import com.example.lab2_3.dtos.CurrencyDTO;
+import com.example.lab2_3.dtos.DateWithExchangeRatesDTO;
 import com.example.lab2_3.services.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class ExchangeController {
         if (dateFrom == null || dateTo == null || source_curr == null || target_curr == null) {
             return "exchanges_by_date";
         }
-        List<CurrencyDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, dateTo, source_curr, target_curr);
+        List<DateWithExchangeRatesDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, dateTo, source_curr, target_curr);
         model.addAttribute("exchanges", exchanges);
         return "exchanges_by_date";
     }
