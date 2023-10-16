@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update currency</title>
+</head>
+<body>
+<form th:action="@{/admin/currency/update/{id}(id=${currency.id})}"
+      th:object="${currency}"
+      method="post">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" th:value="${currency.name}" required>
+    <input type="submit" value="Update">
+</form>
+
+</body>
+</html>

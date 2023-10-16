@@ -32,21 +32,9 @@
     <input type="submit" value="Submit">
 </form>
 
-<table>
-    <tr>
-        <th>From</th>
-        <th>To</th>
-        <th>Rate</th>
-    </tr>
-    <tr th:each="exchange : ${exchanges}">
-        <td th:text="${exchange.sourceCurrency}">From</td>
-        <td th:text="${exchange.targetCurrency}">To</td>
-        <td th:text="${exchange.rate}">Rate</td>
-    </tr>
-</table>
 
-<p>
-    {exchanges}
+
+<p th:text="${exchanges}">
 </p>
 
 </body>
