@@ -18,4 +18,20 @@ public interface ExchangeService {
     CurrencyDTO getTodayCurrency(String currency1, String currency2);
 
     void deleteAllRates();
+
+    List<ExchangeRate> getAll();
+
+    void updateRate(Long id, Double rate);
+
+    ExchangeRate getById(Long id);
+
+    ExchangeRate create(ExchangeRate exchangeRate);
+
+    void delete(Long id);
+
+    ExchangeRate update(Long id, ExchangeRate exchangeRate);
+
+
+
+
 }

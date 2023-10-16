@@ -5,6 +5,8 @@ import com.example.lab2_3.entities.Currency;
 import java.util.List;
 
 public interface CurrencyService {
+
+    Currency getById(Long id);
     List<Currency> getAll();
 
     Currency create(Currency currency);

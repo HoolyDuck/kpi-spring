@@ -81,6 +81,44 @@ public class ExchangeServiceBean implements ExchangeService {
         exchangeRepo.deleteAll();
     }
 
+    @Override
+    public List<ExchangeRate> getAll() {
+        return exchangeRepo.findAll();
+    }
+
+    @Override
+    public void updateRate(Long id, Double rate) {
+        ExchangeRate exchangeRate = exchangeRepo.findById(id).get();
+        exchangeRate.setRate(rate);
+        exchangeRepo.save(exchangeRate);
+    }
+
+    @Override
+    public ExchangeRate getById(Long id) {
+        return exchangeRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public ExchangeRate create(ExchangeRate exchangeRate) {
+        return exchangeRepo.save(exchangeRate);
+    }
+
+    @Override
+    public void delete(Long id) {
+        exchangeRepo.deleteById(id);
+    }
+
+    @Override
+    public ExchangeRate update(Long id, ExchangeRate exchangeRate) {
+        ExchangeRate exchangeRateToUpdate = exchangeRepo.findById(id).get();
+        exchangeRateToUpdate.setRate(exchangeRate.getRate());
+        exchangeRateToUpdate.setDate(exchangeRate.getDate());
+        exchangeRateToUpdate.setSourceCurrency(exchangeRate.getSourceCurrency());
+        exchangeRateToUpdate.setTargetCurrency(exchangeRate.getTargetCurrency());
+        return exchangeRepo.save(exchangeRateToUpdate);
+    }
+
+
     private static class CurrencyMapper {
         private static CurrencyDTO toDto(ExchangeRate exchangeRate) {
             return CurrencyDTO.builder()

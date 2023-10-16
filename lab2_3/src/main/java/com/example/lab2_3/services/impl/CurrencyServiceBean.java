@@ -56,6 +56,11 @@ public class CurrencyServiceBean implements CurrencyService {
         });
     }
 
+    @Override
+    public Currency getById(Long id) {
+        return currencyRepo.findById(id).orElse(null);
+    }
+
 //    private void refreshData() {
 //        // List<Entity> create list of data, in order to insert it then in the database
 //        List<ExchangeRate> rates = new ArrayList<>();
