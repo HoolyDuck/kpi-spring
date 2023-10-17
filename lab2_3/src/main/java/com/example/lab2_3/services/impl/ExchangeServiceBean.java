@@ -26,25 +26,22 @@ public class ExchangeServiceBean implements ExchangeService {
     }
 
     @Override
-    public List<DateWithExchangeRatesDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1, String currency2) {
+    public List<DateWithExchangeRatesDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1) {
         // Format - YYYY-MM-DD
         List<DateEntity> dates = dateService.getDatesInRange(dateFrom, dateTo);
-        List<DateWithExchangeRatesDTO> result = dates.stream().map(dateEntity -> {
-            List<ExchangeRate> exchangeRates = exchangeRepo.findAll().stream().filter(exchangeRate -> {
-                if (exchangeRate.getDate().getDay() == dateEntity.getDay()
-                        && Objects.equals(exchangeRate.getDate().getMonth(), dateEntity.getMonth())
-                        && Objects.equals(exchangeRate.getDate().getYear(), dateEntity.getYear())
-                        && exchangeRate.getSourceCurrency().getName().equals(currency1)) {
-                    return true;
-                }
-                return false;
-            }).toList();
+
+        return dates.stream().map(dateEntity -> {
+            List<ExchangeRate> exchangeRates = exchangeRepo.findAll().stream().filter(exchangeRate -> Objects.equals(exchangeRate.getDate().getDay(), dateEntity.getDay())
+                    && Objects.equals(exchangeRate.getDate().getMonth(), dateEntity.getMonth())
+                    && Objects.equals(exchangeRate.getDate().getYear(), dateEntity.getYear())
+                    && exchangeRate.getSourceCurrency().getName().equals(currency1)).toList();
             return DateWithExchangeRatesDTO.builder()
                     .date(dateEntity)
                     .exchangeRates(exchangeRates)
                     .build();
-        }).toList();
-        return result;
+        }).filter(
+                dateWithExchangeRatesDTO -> dateWithExchangeRatesDTO.getExchangeRates().size() > 0
+        ).toList();
     }
 
     @Override
