@@ -11,7 +11,7 @@ import java.util.List;
 public interface ExchangeService {
     List<ExchangeRate> createExchangeRates(List<ExchangeRate> rates);
 
-    List<DateWithExchangeRatesDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1, String currency2);
+    List<DateWithExchangeRatesDTO> getAllCurrenciesByDate(String dateFrom, String dateTo, String currency1);
 
     List<CurrencyDTO> getAllTodayCurrencies();
 
