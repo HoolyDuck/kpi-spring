@@ -2,6 +2,8 @@ package com.example.lab2_3.controllers;
 
 import com.example.lab2_3.dtos.CurrencyDTO;
 import com.example.lab2_3.dtos.DateWithExchangeRatesDTO;
+import com.example.lab2_3.entities.Currency;
+import com.example.lab2_3.services.CurrencyService;
 import com.example.lab2_3.services.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,10 +19,16 @@ import java.util.List;
 public class ExchangeController {
 
     private ExchangeService exchangeService;
+    private CurrencyService currencyService;
 
     @Autowired
     public void setExchangeService(ExchangeService exchangeService) {
         this.exchangeService = exchangeService;
+    }
+
+    @Autowired
+    public void setCurrencyService(CurrencyService currencyService) {
+        this.currencyService = currencyService;
     }
 
     @GetMapping("/latest")
@@ -35,19 +43,16 @@ public class ExchangeController {
             Model model,
             @RequestParam(value = "dateFrom", required = false) final String dateFrom,
             @RequestParam(value = "dateTo", required = false) final String dateTo,
-            @RequestParam(value = "source_curr", required = false) final String source_curr,
-            @RequestParam(value = "target_curr", required = false) final String target_curr
+            @RequestParam(value = "source_curr", required = false) final String source_curr
     ) {
-        if (dateFrom == null || dateTo == null || source_curr == null || target_curr == null) {
+        List<Currency> currencies = currencyService.getAll();
+        model.addAttribute("currencies", currencies);
+        model.addAttribute("curr", source_curr);
+        if (dateFrom == null || dateTo == null || source_curr == null) {
             return "exchanges_by_date";
         }
-        List<DateWithExchangeRatesDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, dateTo, source_curr, target_curr);
+        List<DateWithExchangeRatesDTO> exchanges = exchangeService.getAllCurrenciesByDate(dateFrom, dateTo, source_curr);
         model.addAttribute("exchanges", exchanges);
         return "exchanges_by_date";
     }
-
-
-
-
-
 }

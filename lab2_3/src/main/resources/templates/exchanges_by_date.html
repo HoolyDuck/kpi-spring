@@ -2,40 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Exchanges by date</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-<h1>Exchanges by date</h1>
-<form th:action="@{/exchange/by-date(dateFrom=${dateFrom}, dateTo=${dateTo}, source_curr=${source_curr}, target_curr=${target_curr})}" method="get">
-    <--! Query params: date from, date to, currency from, currency to -->
-    <label for="date-from">Date from:</label>
-    <input type="date" id="date-from" name="dateFrom" value="2019-01-01">
-    <label for="date-to">Date to:</label>
-    <input type="date" id="date-to" name="dateTo" value="2019-01-01">
 
-    <label for="currency-from">Currency from:</label>
-    <select id="currency-from" name="source_curr">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="UAH">UAH</option>
-        <option value="GBR">GBR</option>
-    </select>
+<header>
+    <div class="header-button">
+        <a th:href="@{/}"> <span class="logo">ERs</span></a>
+    </div>
+    <div class="header-button">
+        <a th:href="@{/admin/index}">Admin page</a>
+    </div>
+</header>
+<nav>
+    <ul class="nav-list">
+        <li class="nav-button"><a th:href="@{/exchange/latest}">Exchanges for today</a></li>
+        <li><a th:href="@{/exchange/by-date}">Filter exchanges by date</a></li>
+    </ul>
+</nav>
 
-    <label for="currency-to">Currency to:</label>
-    <select id="currency-to" name="target_curr">
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
-        <option value="UAH">UAH</option>
-        <option value="GBR">GBR</option>
-    </select>
+<main>
+    <h1>Exchanges by date</h1>
+    <form class="search-form"
+          th:action="@{/exchange/by-date(dateFrom=${dateFrom}, dateTo=${dateTo}, source_curr=${source_curr})}"
+          method="get">
+        <div class="form-inputs">
+            <div class="form-block">
+                <label for="date-from">Date from:</label>
+                <input type="date" id="date-from" name="dateFrom" value="2023-09-01">
+                <label for="date-to">Date to:</label>
+                <input type="date" id="date-to" name="dateTo" value="2023-10-31">
+            </div>
+            <div class="form-block">
+                <label for="currency-from">Currency</label>
+                <select id="currency-from" name="source_curr">
+                    <option th:each="currency : ${currencies}"
+                            th:value="${currency.name}"
+                            th:text="${currency.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-block">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    <div th:if="${curr}" th:switch="${curr}" class="curr-name">
+        <span>Currency: </span>
+        <span th:case="USD">United States dollar</span>
+        <span th:case="EUR">Euro</span>
+        <span th:case="GBR">Pound sterling</span>
+        <span th:case="UAH">Ukrainian hryvnia</span>
+        <span th:case="*">Idk lol</span>
+    </div>
+    <div class="table-container">
+        <table th:unless="${#lists.isEmpty(exchanges)}">
+            <tr>
+                <th th:each="exchange : ${exchanges}"
+                    th:text="${exchange.date.day} + '.' + ${exchange.date.month} + '.' + ${exchange.date.year}"
+                    th:unless="${#lists.isEmpty(exchange.exchangeRates)}"></th>
+            </tr>
+            <tr>
+                <td th:each="exchange : ${exchanges}" th:unless="${#lists.isEmpty(exchange.exchangeRates)}">
+                    <table>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Rate</th>
+                        </tr>
+                        <tr th:each="exchangeRate : ${exchange.exchangeRates}">
+                            <td th:text="${exchangeRate.sourceCurrency.name}">From</td>
+                            <td th:text="${exchangeRate.targetCurrency.name}">To</td>
+                            <td th:text="${exchangeRate.rate}">Rate</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
 
-    <input type="submit" value="Submit">
-</form>
 
-
-
-<p th:text="${exchanges}">
-</p>
-
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(exchanges)}" class="nothing-found">
+        <span class="sad-smile">:(</span>
+        <p>No exchanges found</p>
+    </div>
+</main>
 </body>
 </html>

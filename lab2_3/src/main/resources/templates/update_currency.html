@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Update currency</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
+<main>
 <form th:action="@{/admin/currency/update/{id}(id=${currency.id})}"
       th:object="${currency}"
-      method="post">
+      method="post"
+      class="crupdate-form">
     <label for="name">Name</label>
     <input type="text" id="name" name="name" th:value="${currency.name}" required>
-    <input type="submit" value="Update">
+    <button type="submit">Update</button>
 </form>
-
+</main>
 </body>
 </html>

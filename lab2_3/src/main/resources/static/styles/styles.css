@@ -1,0 +1,296 @@
+body {
+    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #292b2c;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #292b2c;
+    margin: 0;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #292b2c;
+    margin: 0;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #69c5ff;
+    border-bottom: 1px solid #e7e7e7;
+    display: flex;
+    justify-content: space-between;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.header-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #69c5ff;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.header-button:hover {
+    background-color: #007bff;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+nav {
+    background-color: #e7e7e7;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ddd;
+}
+
+.flag-icon {
+    width: 30px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+
+.table-container {
+    max-width: 100%;
+    max-height: 500px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    border: 1px solid #a1a1a1;
+}
+
+.table-container table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.table-container th, .table-container td {
+    text-align: left;
+    padding: 16px;
+    border: 1px solid #ddd;
+}
+
+.table-container tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+.search-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-form button {
+    background-color: #69c5ff;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 4px;
+}
+
+.nothing-found {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #a6a6a6;
+    margin: 0;
+}
+
+.sad-smile {
+    font-size: 120px;
+    color: #a6a6a6;
+    margin: 0;
+}
+
+.form-block {
+    display: flex;
+    gap: 10px;
+    margin: 0 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.form-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.delete-button {
+    background-color: #ff0000;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 4px;
+}
+
+.delete-button:hover {
+    background-color: #ff4d4d;
+}
+
+.update-button {
+    background-color: #69c5ff;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 4px;
+}
+
+.update-button:hover {
+    background-color: #007bff;
+}
+
+.add-button {
+    background-color: #69ff70;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 4px;
+}
+
+.add-button:hover {
+    background-color: #1aff00;
+}
+
+.button-container {
+    margin: 10px 0;
+}
+
+.crupdate-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 200px;
+}
+
+.crupdate-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.crupdate-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.crupdate-form button {
+    background-color: #69c5ff;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    border-radius: 4px;
+}
+
+.curr-name span {
+    font-size: 24px;
+    font-weight: 700;
+    color: #a6a6a6;
+    margin: 0;
+}

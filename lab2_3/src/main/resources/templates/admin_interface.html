@@ -3,46 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
-<h1>Admin Page</h1>
-<h2>Currencies</h2>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-    </tr>
-    <tr th:each="currency : ${currencies}">
-        <td th:text="${currency.id}">Id</td>
-        <td th:text="${currency.name}">Name</td>
-        <td>
-            <a th:href="@{/admin/currency/delete/{id}(id=${currency.id})}">Delete</a>
-            <a th:href="@{/admin/currency/update/{id}(id=${currency.id})}">Update</a>
-        </td>
-    </tr>
-</table>
-<a th:href="@{/admin/currency/add}">Add new currency</a>
-<h2>Exchanges for today</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Rate</th>
-        <th>Date</th>
-    </tr>
-    <tr th:each="exchange : ${exchangeRates}">
-        <td th:text="${exchange.id}">Id</td>
-        <td th:text="${exchange.sourceCurrency.name}">From</td>
-        <td th:text="${exchange.targetCurrency.name}">To</td>
-        <td th:text="${exchange.rate}">Rate</td>
-        <td th:text="${exchange.date.day} + '.' + ${exchange.date.month} + '.' + ${exchange.date.year}">Date</td>
-        <td>
-            <a th:href="@{/admin/exchange/delete/{id}(id=${exchange.id})}">Delete</a>
-            <a th:href="@{/admin/exchange/update/{id}(id=${exchange.id})}">Update</a>
-        </td>
-    </tr>
-</table>
-<a th:href="@{/admin/exchange/add}">Add new exchange</a>
+<header>
+    <div class="header-button">
+        <a th:href="@{/}"> <span class="logo">ERs</span></a>
+    </div>
+    <div class="header-button">
+        <a th:href="@{/admin/index}">Admin page</a>
+    </div>
+</header>
+<nav>
+    <ul class="nav-list">
+        <li class="nav-button"><a th:href="@{/exchange/latest}">Exchanges for today</a></li>
+        <li><a th:href="@{/exchange/by-date}">Filter exchanges by date</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Admin Page</h1>
+    <h2>Currencies</h2>
+    <div class="button-container">
+        <a th:href="@{/admin/currency/add}" class="add-button">Add new currency</a>
+    </div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="currency : ${currencies}">
+                <td th:text="${currency.id}">Id</td>
+                <td th:text="${currency.name}">Name</td>
+                <td>
+                    <a th:href="@{/admin/currency/delete/{id}(id=${currency.id})}" class="delete-button">Delete</a>
+                    <a th:href="@{/admin/currency/update/{id}(id=${currency.id})}" class="update-button">Update</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>Exchanges</h2>
+    <div class="button-container">
+        <a th:href="@{/admin/exchange/add}" class="add-button">Add new exchange</a>
+    </div>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Rate</th>
+                <th>Date</th>
+            </tr>
+            <tr th:each="exchange : ${exchangeRates}">
+                <td th:text="${exchange.id}">Id</td>
+                <td th:text="${exchange.sourceCurrency.name}">From</td>
+                <td th:text="${exchange.targetCurrency.name}">To</td>
+                <td th:text="${exchange.rate}">Rate</td>
+                <td th:text="${exchange.date.day} + '.' + ${exchange.date.month} + '.' + ${exchange.date.year}">Date
+                </td>
+                <td>
+                    <a th:href="@{/admin/exchange/delete/{id}(id=${exchange.id})}" class="delete-button">Delete</a>
+                    <a th:href="@{/admin/exchange/update/{id}(id=${exchange.id})}" class="update-button">Update</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</main>
 </body>
+
 </html>
