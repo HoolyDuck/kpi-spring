@@ -1,11 +1,13 @@
 package com.example.lab2_3.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "dates")
@@ -33,4 +35,9 @@ public class DateEntity {
     @Max(2100)
     @Column(name = "year", nullable = false)
     private Integer year;
+
+    @OneToMany(mappedBy = "date", orphanRemoval = true, cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<ExchangeRate> rates;
+
 }
