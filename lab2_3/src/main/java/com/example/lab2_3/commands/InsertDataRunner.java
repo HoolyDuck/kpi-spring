@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -34,7 +33,9 @@ public class InsertDataRunner implements CommandLineRunner {
     private final DateService dateService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+        //clear data
+        exchangeService.deleteAllRates();
         //clear dates
         dateService.deleteAll();
         //insert currencies
@@ -84,8 +85,6 @@ public class InsertDataRunner implements CommandLineRunner {
                     }
                 }
             }
-            //clear data
-            exchangeService.deleteAllRates();
         }
         //insert all the data into database
         exchangeService.createExchangeRates(rates);
@@ -112,15 +111,15 @@ public class InsertDataRunner implements CommandLineRunner {
         }
         stringBuilder.append("&B=1&P=&I=1&btnOK=Go%21");
         String url = stringBuilder.toString();
-        Document doc = getDocumet(url);
+        Document doc = getDocument(url);
         Elements elements = doc.getElementsByTag("tbody");
         Element element = elements.get(28);
         Elements childs = element.children().get(2).children();
         String mes = childs.get(1).toString();
-        return getDigitfromString(mes);
+        return getDigitFromString(mes);
     }
 
-    private String getDigitfromString(String mes) {
+    private String getDigitFromString(String mes) {
         Pattern pat = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
         Matcher matcher = pat.matcher(mes.replaceAll("\\s+", ""));
         int k = 0;
@@ -133,7 +132,7 @@ public class InsertDataRunner implements CommandLineRunner {
         return mes;
     }
 
-    private Document getDocumet(String url) {
+    private Document getDocument(String url) {
         Document doc = null;
         try {
             doc = Jsoup.connect(url).get();

@@ -51,26 +51,15 @@ public class ExchangeServiceBean implements ExchangeService {
 
     @Override
     public CurrencyDTO getTodayCurrency(String currency1, String currency2) {
-        return GetTodayCurrencies().stream().filter(exchangeRate -> {
-                    if (exchangeRate.getSourceCurrency().getName().equals(currency1)
-                            && exchangeRate.getTargetCurrency().getName().equals(currency2)) {
-                        return true;
-                    }
-                    return false;
-
-                }).
+        return GetTodayCurrencies().stream().filter(exchangeRate -> exchangeRate.getSourceCurrency().getName().equals(currency1)
+                && exchangeRate.getTargetCurrency().getName().equals(currency2)).
                 findFirst().map(CurrencyMapper::toDto).get();
     }
 
     private List<ExchangeRate> GetTodayCurrencies() {
         LocalDate localDate = LocalDate.now();
-        return exchangeRepo.findAll().stream().filter(exchangeRate -> {
-            if (exchangeRate.getDate().getDay() == localDate.getDayOfMonth()
-                    && exchangeRate.getDate().getMonth() == localDate.getMonthValue()) {
-                return true;
-            }
-            return false;
-        }).toList();
+        return exchangeRepo.findAll().stream().filter(exchangeRate -> exchangeRate.getDate().getDay() == localDate.getDayOfMonth()
+                && exchangeRate.getDate().getMonth() == localDate.getMonthValue()).toList();
     }
 
     @Override
@@ -85,6 +74,7 @@ public class ExchangeServiceBean implements ExchangeService {
 
     @Override
     public void updateRate(Long id, Double rate) {
+        if(exchangeRepo.findById(id).isEmpty()) throw new NullPointerException();
         ExchangeRate exchangeRate = exchangeRepo.findById(id).get();
         exchangeRate.setRate(rate);
         exchangeRepo.save(exchangeRate);
@@ -107,6 +97,7 @@ public class ExchangeServiceBean implements ExchangeService {
 
     @Override
     public ExchangeRate update(Long id, ExchangeRate exchangeRate) {
+        if(exchangeRepo.findById(id).isEmpty()) throw new NullPointerException();
         ExchangeRate exchangeRateToUpdate = exchangeRepo.findById(id).get();
         exchangeRateToUpdate.setRate(exchangeRate.getRate());
         exchangeRateToUpdate.setDate(exchangeRate.getDate());

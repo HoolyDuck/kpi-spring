@@ -17,10 +17,4 @@ public class DateWithExchangeRatesDTO {
 
     @JsonProperty("exchangeRates")
     private List<ExchangeRate> exchangeRates;
-
-    public void addExchangeRate(ExchangeRate rate){
-        exchangeRates.add(rate);
-    }
-
-
 }
