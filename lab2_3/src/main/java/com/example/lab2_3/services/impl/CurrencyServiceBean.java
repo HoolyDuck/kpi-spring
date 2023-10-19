@@ -4,14 +4,14 @@ import com.example.lab2_3.entities.Currency;
 import com.example.lab2_3.repositories.CurrencyRepository;
 import com.example.lab2_3.services.CurrencyService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-@RequiredArgsConstructor
 public class CurrencyServiceBean implements CurrencyService {
-    private final CurrencyRepository currencyRepo;
+    @Autowired
+    private CurrencyRepository currencyRepo;
 
     @Override
     public List<Currency> getAll() {
